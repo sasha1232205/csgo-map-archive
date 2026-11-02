@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d0f13">
+    <title>Workshop Maps — CS:GO Archive</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23f89d1c'/%3E%3C/svg%3E">
+
+    <script>
+        if ((navigator.hardwareConcurrency || 8) <= 4 ||
+            (navigator.deviceMemory       || 8) <= 4) {
+            document.documentElement.classList.add('low-power');
+        }
+    </script>
+
+    <link rel="preconnect" href="https://steamusercontent-a.akamaihd.net">
+    <link rel="dns-prefetch" href="https://steamusercontent-a.akamaihd.net">
+    <link rel="preconnect" href="https://avatars.steamstatic.com">
+    <link rel="dns-prefetch" href="https://avatars.steamstatic.com">
+
+    <!-- Preload critical assets so FCP isn't blocked on HTML parse -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+          href="/static/fonts/inter-v20-cyrillic_cyrillic-ext_greek_greek-ext_latin_latin-ext_vietnamese-regular.woff2">
+    <link rel="preload" as="script"
+          href="/static/app.js?v={{ versions['app.js'] }}">
+
+    <link rel="stylesheet" href="/static/style.css?v={{ versions['style.css'] }}">
+</head>
+<body>
+
+<div class="top-progress" id="topProgress" aria-hidden="true"></div>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="brand">
+            <div class="logo" aria-hidden="true">
+                <img src="/static/logo.svg?v={{ versions['logo.svg'] }}"
+                     alt="" width="48" height="48" loading="eager" decoding="async">
+            </div>
+            <div class="brand-text">
+                <h1>Workshop Maps</h1>
+                <span class="subtitle">CS:GO Map Archive</span>
+            </div>
+        </div>
+
+        <div class="search-wrap">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Search title, BSP or author ID…  (press /)"
+                   autocomplete="off" spellcheck="false">
+            <button class="search-clear" id="searchClear" aria-label="Clear search">×</button>
+        </div>
+
+        <div class="header-actions">
+            <select id="sortSelect" aria-label="Sort maps">
+                <option value="default">Default order</option>
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+                <option value="title-asc">Title (A–Z)</option>
+                <option value="size-desc">Size (largest)</option>
+                <option value="size-asc">Size (smallest)</option>
+            </select>
+        </div>
+    </div>
+</header>
+
+<div class="filter-bar" id="filterChips"></div>
+
+<div id="loader">
+    <div class="loader-content">
+        <div class="spinner"></div>
+        <p id="loadStatus">Loading map archive…</p>
+        <div class="progress-bar"><div id="progressFill"></div></div>
+    </div>
+</div>
+
+<main id="mapContainer" class="grid"></main>
+
+<div id="pagination" class="pagination-controls" style="display: none;">
+    <button id="firstBtn" aria-label="First page">«</button>
+    <button id="prevBtn" disabled>‹ Prev</button>
+    <div class="page-info">
+        <span>Page</span>
+        <input type="number" id="pageInput" min="1" value="1">
+        <span>of <strong id="totalPages">1</strong></span>
+        <span class="count-sep">·</span>
+        <span><strong id="resultCount">0</strong> maps</span>
+    </div>
+    <button id="nextBtn">Next ›</button>
+    <button id="lastBtn" aria-label="Last page">»</button>
+</div>
+
+<!-- ===================== MAP DETAIL MODAL ===================== -->
+<div class="modal-backdrop" id="mapModal" role="dialog" aria-modal="true"
+     aria-labelledby="modalTitle" hidden>
+    <div class="modal" role="document">
+        <button class="modal-close" id="modalClose" aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+
+        <div class="modal-gallery">
+            <div class="gallery-viewport">
+                <div class="gallery-track" id="galleryTrack"></div>
+            </div>
+            <button class="gallery-nav gallery-prev" id="galleryPrev" aria-label="Previous image">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+            </button>
+            <button class="gallery-nav gallery-next" id="galleryNext" aria-label="Next image">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
+            </button>
+            <div class="gallery-dots" id="galleryDots"></div>
+        </div>
+
+        <div class="modal-body">
+            <div class="modal-headline">
+                <span class="badge" id="modalBadge"></span>
+                <h2 class="modal-title" id="modalTitle"></h2>
+            </div>
+
+            <div class="modal-meta">
+                <div class="author" id="modalAuthor">
+                    <span class="author-avatar"></span>
+                    <span class="author-name"></span>
+                </div>
+                <span class="size" id="modalSize"></span>
+                <span class="card-date" id="modalDate"></span>
+            </div>
+
+            <div class="modal-description" id="modalDescription"></div>
+
+            <div class="modal-actions">
+                <a class="btn btn-steam" id="modalSteam" target="_blank" rel="noopener"></a>
+                <a class="btn btn-yandex" id="modalYandex" target="_blank" rel="noopener"></a>
+                <a class="btn btn-direct" id="modalDownload" target="_blank" rel="noopener"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== CARD TEMPLATE ===================== -->
+<template id="cardTpl">
+    <article class="card">
+        <div class="preview">
+            <span class="badge"></span>
+            <img class="map-preview" loading="lazy" decoding="async" alt=""
+                 width="320" height="180">
+        </div>
+        <div class="card-body">
+            <h3 class="card-title"></h3>
+            <div class="card-meta">
+                <div class="author">
+                    <span class="author-avatar"></span>
+                    <span class="author-name"></span>
+                </div>
+                <span class="size"></span>
+            </div>
+            <div class="card-date"></div>
+            <div class="card-actions">
+                <a class="btn btn-steam" target="_blank" rel="noopener"></a>
+                <a class="btn btn-yandex" target="_blank" rel="noopener"></a>
+                <a class="btn btn-direct" target="_blank" rel="noopener"></a>
+            </div>
+        </div>
+    </article>
+</template>
+
+<script>window.__INITIAL__ = {{ initial | tojson }};</script>
+<script src="/static/app.js?v={{ versions['app.js'] }}"></script>
+</body>
+</html>

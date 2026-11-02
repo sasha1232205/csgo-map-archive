@@ -1,0 +1,7 @@
+flask
+flask-compress
+brotli
+orjson
+requests
+gunicorn
+psutil

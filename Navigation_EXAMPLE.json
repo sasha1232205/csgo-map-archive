@@ -1,0 +1,87 @@
+[
+  {
+    "FilePath": "2013/540708156315807351/aim_deagle_hangar.bsp",
+    "Link": "https://steamusercontent-a.akamaihd.net/ugc/540708156315807351/5CC64CD524C35D045FF490D3F87E71D60CF676FE/",
+    "SteamLink": "https://steamcommunity.com/sharedfiles/filedetails/?id=122390928",
+    "Аuthor": "76561197989899480",
+    "Title": "Hangar 1 [Deagle only]",
+    "Description": "Can't shoot with new deagle?\r\nTHIS IS PERFECT MAP FOR TRAINING IT!\r\n\r\nShort hangar - fast action battles.\r\n\r\n32 spawns(16 for each side) and HE at center of map.\r\n\r\nHope you like it!\r\n\r\nRATE, SUBSCRIBE, AND PLAY!",
+    "NameBsp": "aim_deagle_hangar.bsp",
+    "Size": 2035550,
+    "TimeCreated": 1358972767,
+    "DateTime": "2013-01-23T23:26:07+03:00"
+  },
+  {
+    "FilePath": "2013/1119412561938070577/ar_skyhall_a06.bsp",
+    "Link": "https://steamusercontent-a.akamaihd.net/ugc/1119412561938070577/D849EE5CE33E3946203C811E86F8993C7405809C/",
+    "SteamLink": "https://steamcommunity.com/sharedfiles/filedetails/?id=122397023",
+    "Аuthor": "76561197993401988",
+    "Title": "ar_Skyhall",
+    "Description": "AR map suitable for 10+ players, right now under severe development. I'm looking for a clean design à la Mirror's Edge mixed with an Office-like flow, I'll probably ship it with a pair of custom textures and skybox. Leave your feedback",
+    "NameBsp": "ar_skyhall_a06.bsp",
+    "Size": 3154617,
+    "TimeCreated": 1358974862,
+    "DateTime": "2013-01-24T00:01:02+03:00"
+  },
+  {
+    "FilePath": "2013/71250381582709907/fy_iceworld_go_v3.bsp",
+    "Link": "https://steamusercontent-a.akamaihd.net/ugc/71250381582709907/2B5AA53740B5442CE9103381F6CD4AC08391D8D9/",
+    "SteamLink": "https://steamcommunity.com/sharedfiles/filedetails/?id=122404013",
+    "Аuthor": "76561198007592328",
+    "Title": "fy_iceworld_go_v3",
+    "Description": "fy_iceworld !!\nThis card is popular css\nupdated!\n\n1)\nreplace light_floodlight.mdl in light_floodlight02_off.mdl\n\n2)\nadd dirtfloor004a.vmt/vtf \n",
+    "NameBsp": "fy_iceworld_go_v3.bsp",
+    "Size": 2680185,
+    "TimeCreated": 1358977148,
+    "DateTime": "2013-01-24T00:39:08+03:00"
+  },
+........
+  {
+    "FilePath": "2023/2013723877245278804/cs_burnout.bsp",
+    "Link": "https://steamusercontent-a.akamaihd.net/ugc/2013723877245278804/F8B710A04DB9AFE76454983F85AFF65716504728/",
+    "SteamLink": "https://steamcommunity.com/sharedfiles/filedetails/?id=3013567214",
+    "Аuthor": "76561198327571273",
+    "Title": "Burnout",
+    "Description": "v.0.2 breach gamemode map",
+    "NameBsp": "cs_burnout.bsp",
+    "Size": 1124722,
+    "TimeCreated": 1690931996,
+    "DateTime": "2023-08-02T02:19:56+03:00"
+  },
+  {
+    "FilePath": "2023/2028363009418525816/de_subway.bsp",
+    "Link": "https://steamusercontent-a.akamaihd.net/ugc/2028363009418525816/79939B8355DE06E5BBD1F5C45029E08940237577/",
+    "SteamLink": "https://steamcommunity.com/sharedfiles/filedetails/?id=3013591923",
+    "Аuthor": "76561198858066153",
+    "Title": "de_subway",
+    "Description": "My first attempt at an actually defure map! So be weary of balence issues. Constructive criticism is appretiated. Have fun and a nice day!",
+    "NameBsp": "de_subway.bsp",
+    "Size": 6989985,
+    "TimeCreated": 1690936967,
+    "DateTime": "2023-08-02T03:42:47+03:00"
+  },
+  {
+    "FilePath": "2023/2019355369839295265/gefridaswiec.bsp",
+    "Link": "https://steamusercontent-a.akamaihd.net/ugc/2019355369839295265/61C8727A017281662268D94293D09357A64CD7E9/",
+    "SteamLink": "https://steamcommunity.com/sharedfiles/filedetails/?id=3013618029",
+    "Аuthor": "76561199443089668",
+    "Title": "Gefrida - Wingman",
+    "Description": "Just testing layout and more.",
+    "NameBsp": "gefridaswiec.bsp",
+    "Size": 3563153,
+    "TimeCreated": 1690942426,
+    "DateTime": "2023-08-02T05:13:46+03:00"
+  },
+  {
+    "FilePath": "2023/2004716677990681512/de_rats_gilly.bsp",
+    "Link": "https://steamusercontent-a.akamaihd.net/ugc/2004716677990681512/D3E95D03AF915E7DC785E96F5748F2D1C395D64F/",
+    "SteamLink": "https://steamcommunity.com/sharedfiles/filedetails/?id=3013815716",
+    "Аuthor": "76561199054618502",
+    "Title": "de_rats_gilly",
+    "Description": "Map for the very sadly dead rats genre of maps. recreation of my room that's been transformed into a de_ map. I used only CSGO models and textures, mainly because I'm lazy but im also unfamiliar with how to import custom models to hammer so eh. I'll port it t",
+    "NameBsp": "de_rats_gilly.bsp",
+    "Size": 10265843,
+    "TimeCreated": 1690985592,
+    "DateTime": "2023-08-02T17:13:12+03:00"
+  }
+]
